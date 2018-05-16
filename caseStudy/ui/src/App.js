@@ -27,18 +27,27 @@ class App extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
+            cards: [
+              {
+                author: 'John Smith',
+                text: 'React is so cool!',
+                tags: []
+              },
+              {
+                author: 'Jane Doe',
+                text: 'I use React for all my projects!',
+                tags: []
+              }
+            ]
+          };
+          this.handleSubmit = this.handleSubmit.bind(this);
             /**
              * TODO
              * Add state objects for the user inputs and anything else you may need to render the highchart.
              */
-        };
+        
 
     }
-
-
-
-
-
     render () {
       return (
           <div className="page-display">
@@ -52,14 +61,22 @@ class App extends React.Component{
                * highchart should be displayed by changing the state of that boolean.
                * Don't forget to bind these methods!
                */}
-
+               <p>Start date:</p>
+               <DatePicker selected={this.state.date} onChange={this.handleDateStampChange} />
+               <p>End date:</p>
+               <DatePicker selected={this.state.date} onChange={this.handleDateStampChange} />
                 <div className="date-range">
 
                 </div>
               </div>
 
 
-                 {/**
+                 {
+                     condition
+                     ? <span>Rendered when `truthy`</span>
+                     : <span>Rendered when `falsey`</span>
+                   }
+                   /**
                    *  TODO
                    *  Create a div element that shows a highchart when the ticker, start date, end date
                    *  states ALL have values and nothing (null) otherwise. You will need to use a conditional here

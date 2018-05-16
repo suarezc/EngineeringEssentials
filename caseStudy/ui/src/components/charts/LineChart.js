@@ -20,25 +20,30 @@ import Highcharts from 'highcharts';
 class LineChart extends React.Component {
     constructor(props) {
         super(props);
+        
     }
 
     componentDidMount() {
-/*        Highcharts.chart('chart', {
-
-            TODO
-            Create a highcharts line chart of your choosing (e.g. https://www.highcharts.com/demo/line-time-series for a demo).
-
+        Highcharts.chart('chart', {
+            title: {
+                text: 'Sample Company'
+              },
             series: [{
                 name: 'Prices',
                 data: this.props.data
             }]
         });
-*/
     }
 
     componentWillReceiveProps(props) {
         console.log("New data received to redraw chart.");
-        
+        const dataarray = this.state.cards.map((card, index) => (
+            <Card author={card.author}
+              text={card.text}
+              key={index}
+              tags={card.tags}
+              dateStamp={card.dateStamp} />
+          ));
         /**
          * TODO
          * Parse the data received from props, a Javascript object, to map to a Javascript array
@@ -46,23 +51,15 @@ class LineChart extends React.Component {
          * to create the x-axis.
          */
         
-        /**
-         * TODO
-         * Uncomment the line below to pass the data be displayed to the series
-         * this.chart.series[0].setData(data);
-         */
+           this.chart.series[0].setData(data);
     }
-
     componentWillUnmount() {
         this.chart.destroy();
     }
-
-
     render() {
         return (
             <div id='chart'></div>
         )
     }
 }
-
-// Don't forget to export your component!
+export default LineChart;
