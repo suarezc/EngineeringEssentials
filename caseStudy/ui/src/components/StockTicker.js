@@ -85,19 +85,18 @@ class StockTicker extends React.Component {
                 state: '',
                 sector: '',
                 industry: ''
-
+            }
             /**
              * TODO
              * Add any additional state to pass via props to the typeahead component.
              */
-            value: '',
-            options : [
-                ATVI, ADBE, AKAM, ALXN, GOOG, AMZN, AAL, AMGN, ADI, AAPL,
-                AMAT, ADSK, ADP, BIDU, BIIB, BMRN, AVGO, CA, CELG, CERN,
-                CHTR, CHKP, CTAS, CSCO, CTXS, CTSH, CMCSA, COST, CSX, CTRP,
-                XRAY, DISCA, DISCK, DISH, DLTR,EBAY, EA, EXPE, ESRX, FB,
-                FAST, FISV, GILD, HAS, HSIC, HOLX, IDXX, ILMN, INCY
-            ]
+            // options : [
+            //     ATVI, ADBE, AKAM, ALXN, GOOG, AMZN, AAL, AMGN, ADI, AAPL,
+            //     AMAT, ADSK, ADP, BIDU, BIIB, BMRN, AVGO, CA, CELG, CERN,
+            //     CHTR, CHKP, CTAS, CSCO, CTXS, CTSH, CMCSA, COST, CSX, CTRP,
+            //     XRAY, DISCA, DISCK, DISH, DLTR,EBAY, EA, EXPE, ESRX, FB,
+            //     FAST, FISV, GILD, HAS, HSIC, HOLX, IDXX, ILMN, INCY
+            // ]
             
 
         };
@@ -116,10 +115,9 @@ class StockTicker extends React.Component {
              * to handle errors). If you successfully retrieve this information, you can set the state objects
              * and render it.
              */
-            this.setState({showinfo: true});
-            let url = event[0];
+            this.setState({showcompanyinfo: true});
             //use get company info using url (case study, services, company)
-            let info = GET(url, event[0].symbol);
+            let info = GET(event[0].symbol |-> url);
             this.setState({company: {symbol: info.symbol, name: info.name, city: info.headquartersCity, state: info.headquartersStateOrCountry, sector: info.sector, industry: info.industry }})
             
             //this.props.onChange(..);  Call this.props.onChange with the selected symbol to propagate it
@@ -129,8 +127,8 @@ class StockTicker extends React.Component {
 
         }
         else {
-            this.setState({showinfo: false});
-            this.props.onChange(showinfo, null);
+            this.setState({showcompanyinfo: false});
+            this.props.onChange(this.state.company.showcompanyinfo, null);
         }
     }
 
@@ -171,6 +169,9 @@ class StockTicker extends React.Component {
                      *  be maintained as a state object.
                      *  http://reactpatterns.com/#conditional-rendering
                      */
+                    this.state.showcompanyinfo
+                    ? <h1>{this.state.company.name}</h1>
+                    : <h1> </h1>
                 }
             </div>
         );
@@ -178,4 +179,4 @@ class StockTicker extends React.Component {
 
 }
 
-//Don't forget to export your component!
+export default StockTicker;
