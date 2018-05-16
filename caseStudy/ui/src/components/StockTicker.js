@@ -77,7 +77,7 @@ class StockTicker extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showcompanyinfo: false, //TODO: Use this boolean to determine if the company information should be rendered
+            showcompanyinfo: true, //TODO: Use this boolean to determine if the company information should be rendered
             company : {
                 symbol: '',
                 name: '',
@@ -117,7 +117,18 @@ class StockTicker extends React.Component {
              */
             this.setState({showcompanyinfo: true});
             //use get company info using url (case study, services, company)
-            let info = GET(event[0].symbol |-> url);
+            // let info = GET(event[0].symbol |-> url);
+
+            let info = {
+                "symbol":"HSIC",
+                "name":"Henry Schein Inc.",
+                "headquartersCity":"Melville",
+                "headquartersStateOrCountry":"NY",
+                "numberOfEmployees":21000,
+                "sector":"Healthcare",
+                "industry":"Medical Equipment Wholesale"
+            };
+
             this.setState({company: {symbol: info.symbol, name: info.name, city: info.headquartersCity, state: info.headquartersStateOrCountry, sector: info.sector, industry: info.industry }})
             
             //this.props.onChange(..);  Call this.props.onChange with the selected symbol to propagate it
@@ -168,11 +179,14 @@ class StockTicker extends React.Component {
                      *  to help control rendering and pass these states as props to the component. This conditional can
                      *  be maintained as a state object.
                      *  http://reactpatterns.com/#conditional-rendering
-                     */
-                    this.state.showcompanyinfo
-                    ? <h1>{this.state.company.name}</h1>
-                    : <h1> </h1>
-                }
+                     */ }
+
+
+                    {this.state.showcompanyinfo
+                    ? <h1>{this.state.company.name} this.props.onChange() </h1>
+                    : <h1> b</h1>
+                    }
+                
             </div>
         );
     }

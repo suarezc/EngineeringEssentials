@@ -53,12 +53,19 @@ class App extends React.Component{
                * highchart should be displayed by changing the state of that boolean.
                * Don't forget to bind these methods!
                */
-               <StockTicker />
+               
+               // 
+               
+               
+               // <Date />
 
              }
+             <StockTicker onChange = {this.hangleChange}/>
+             <TextInput value={this.state.username} onChange={this.handleUsernameChange}/>
+
+
 
                 <div className="date-range">
-
                 </div>
               </div>
 
