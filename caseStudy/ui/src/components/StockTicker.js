@@ -71,6 +71,9 @@ class StockTicker extends React.Component {
      * If you are having difficulty with this, you may hard code the options array from the company data provided for the
      * services.
      */
+
+    ;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -82,11 +85,21 @@ class StockTicker extends React.Component {
                 state: '',
                 sector: '',
                 industry: ''
-            }
+
             /**
              * TODO
              * Add any additional state to pass via props to the typeahead component.
              */
+            value: '',
+            options : [
+                ATVI, ADBE, AKAM, ALXN, GOOG, AMZN, AAL, AMGN, ADI, AAPL,
+                AMAT, ADSK, ADP, BIDU, BIIB, BMRN, AVGO, CA, CELG, CERN,
+                CHTR, CHKP, CTAS, CSCO, CTXS, CTSH, CMCSA, COST, CSX, CTRP,
+                XRAY, DISCA, DISCK, DISH, DLTR,EBAY, EA, EXPE, ESRX, FB,
+                FAST, FISV, GILD, HAS, HSIC, HOLX, IDXX, ILMN, INCY
+            ]
+            
+
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -104,15 +117,20 @@ class StockTicker extends React.Component {
              * and render it.
              */
             this.setState({showinfo: true});
-
+            let url = event[0];
+            //use get company info using url (case study, services, company)
+            let info = GET(url, event[0].symbol);
+            this.setState({company: {symbol: info.symbol, name: info.name, city: info.headquartersCity, state: info.headquartersStateOrCountry, sector: info.sector, industry: info.industry }})
+            
             //this.props.onChange(..);  Call this.props.onChange with the selected symbol to propagate it
             // to the App component, which will handle it via its own onChane prop,
             // ultimately  used to fetch the data for the LineChart component.
+            
 
         }
         else {
             this.setState({showinfo: false});
-            this.props.onChange(undefined);
+            this.props.onChange(showinfo, null);
         }
     }
 
