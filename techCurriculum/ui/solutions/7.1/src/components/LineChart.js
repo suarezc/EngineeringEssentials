@@ -25,12 +25,15 @@ class LineChart extends React.Component {
         text: 'Posts Per Month'
       },
       xAxis: {
+        title: {
+
+        },
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
           'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
       },
       yAxis: {
         title: {
-          text: 'Number of Posts'
+          text: "End of Day Price"
         }
       },
       series: [{

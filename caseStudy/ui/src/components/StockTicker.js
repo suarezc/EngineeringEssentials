@@ -168,21 +168,6 @@ class StockTicker extends React.Component {
                         */}
                     </div>
                 </div>
-                {
-                    /**
-                     *  TODO
-                     *  Create a div element that shows a company information when the ticker changes. You will need to use a conditional here
-                     *  to help control rendering and pass these states as props to the component. This conditional can
-                     *  be maintained as a state object.
-                     *  http://reactpatterns.com/#conditional-rendering
-
-
-
-                     this.props.onChange()
-                     */ 
-
-
-                 }
                     
                 <input type='text' className='form-control' value={this.state.value} onChange={this.handleChange} />
                 
@@ -192,7 +177,7 @@ class StockTicker extends React.Component {
                             {this.state.company.name}
                         </h1>
                     </center>
-                : <h1> b</h1>
+                :   <h1> </h1>
                 } 
             </div>
         );

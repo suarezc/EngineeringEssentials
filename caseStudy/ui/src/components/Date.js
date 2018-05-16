@@ -39,21 +39,23 @@ class Date extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    componentDidMount() {
-        this.props.onChange(this.state.date);
-    }
+    // componentDidMount() {
+    //     this.props.onChange(this.state.date);
+    // }
 
     handleChange(date) {
         this.setState({date: date});
-        // this.props.onChange(date);
+        this.props.onChange(date);
     }
 
     render() {
         return (
             <div className="date">
+
+                <DatePicker selected={this.state.date} onChange={this.handleChange}/>
                 <p><strong>{this.props.text}</strong></p>
                 <div className="date-input">
-                    <DatePicker selected={this.state.date} onChange={this.handleChange}/>
+                    
                 </div>
             </div>
         );
