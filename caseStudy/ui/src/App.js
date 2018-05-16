@@ -28,6 +28,8 @@ class App extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
+          symbol: '',
+
             /**
              * TODO
              * Add state objects for the user inputs and anything else you may need to render the highchart.
@@ -52,18 +54,19 @@ class App extends React.Component{
                * These props methods should set state and help determine if the
                * highchart should be displayed by changing the state of that boolean.
                * Don't forget to bind these methods!
-               */
+               */               
                
-               // 
-               
-               
-               // <Date />
+            //  <div>
+            //     <StockTicker onChange = {this.hangleChange}/>
+             
+            //     <TextInput value={this.state.symbol} onChange={this.handleChange}/>
+            // </div>
+
 
              }
-             <StockTicker onChange = {this.hangleChange}/>
-             <TextInput value={this.state.username} onChange={this.handleUsernameChange}/>
 
-
+             <StockTicker onChange={this.handleChange}/>
+             
 
                 <div className="date-range">
                 </div>

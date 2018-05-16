@@ -31,7 +31,7 @@ class TextInput extends React.Component {
     return (
       <div className='form-group'>
         <label className='control-label'>{this.props.label}</label>
-        <input type='text' className='form-control' name={this.props.name} value={this.props.value} onChange={this.handleChange} />
+        <input type='text' className='form-control' value={this.props.value} onChange={this.handleChange} />
       </div>
     )
   }
