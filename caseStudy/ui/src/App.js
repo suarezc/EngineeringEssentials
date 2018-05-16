@@ -16,7 +16,11 @@
 
 import React from 'react';
 import './style/App.css';
-
+import Title from './components/Title';
+import Inputs from './components/Inputs';
+import LineChart from './components/LineChart';
+import CompanyInfo from './data/companyInfo.json';
+import historicalStockData from './data/historicalStockData.json';
 /**
  * TODO:
  * Import your components
@@ -27,19 +31,8 @@ class App extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            cards: [
-              {
-                author: 'John Smith',
-                text: 'React is so cool!',
-                tags: []
-              },
-              {
-                author: 'Jane Doe',
-                text: 'I use React for all my projects!',
-                tags: []
-              }
-            ]
-          };
+
+        };
           this.handleSubmit = this.handleSubmit.bind(this);
             /**
              * TODO
@@ -48,6 +41,11 @@ class App extends React.Component{
         
 
     }
+    handleSubmit(stockticker, startdate, enddate) {
+        const newInput = {stockticker: stockticker, startdate: startdate, enddate: enddate};
+        const inp = [...this.state.inp, newInput];
+        this.setState({inp: inp});
+      }
     render () {
       return (
           <div className="page-display">

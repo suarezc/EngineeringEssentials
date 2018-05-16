@@ -30,7 +30,7 @@ class Inputs extends React.Component {
 
   render() {
     return (
-      <form className='input'>
+      <form>
         <TextInput name='stockticker' label='Stock Ticker' value={this.state.stockticker} onChange={this.handleStockTickerChange}/>
         <DatePicker selected={this.state.startdate} onChange={this.handleStartDateChange} />
         <DatePicker selected={this.state.enddate} onChange={this.handleEndDateChange} />
