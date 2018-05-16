@@ -65,11 +65,12 @@ class App extends React.Component{
 
              }
 
-             <StockTicker onChange={this.handleChange}/>
-             
+             <StockTicker onChange={this.handleChange}/>             
 
-                <div className="date-range">
-                </div>
+              <div className="date-range">
+                <Date text="Start" />
+                <Date text="End" />
+              </div>
               </div>
 
 

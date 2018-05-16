@@ -45,31 +45,15 @@ class Date extends React.Component {
 
     handleChange(date) {
         this.setState({date: date});
-        this.props.onChange(date);
-        /**
-         * TODO %Done
-         * Set the state. Call this.props.onChange with the date argument
-         * to propagate the change to App component, which will handle it via its
-         * own onChange prop.
-         */
+        // this.props.onChange(date);
     }
 
     render() {
         return (
             <div className="date">
-                {
-                    <DatePicker selected={this.state.date} onChange={this.handleChange}/>
-                    /**
-                     * TODO %DONE
-                     * Render the date picker component with a date format of "MM/DD/YYYY".
-                     * Add a props for an onChange method. Don't forget to bind this method!
-                     * This method should set the state to the date argument passed in the parameter.
-                     *
-                     */
-                }
                 <p><strong>{this.props.text}</strong></p>
                 <div className="date-input">
-
+                    <DatePicker selected={this.state.date} onChange={this.handleChange}/>
                 </div>
             </div>
         );
