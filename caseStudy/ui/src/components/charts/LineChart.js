@@ -23,17 +23,23 @@ class LineChart extends React.Component {
     }
 
     componentDidMount() {
-/*        Highcharts.chart('chart', {
-
-            TODO
-            Create a highcharts line chart of your choosing (e.g. https://www.highcharts.com/demo/line-time-series for a demo).
-
+        Highcharts.chart('chart', {
+            xAxis: {
+                title: {
+                    text: 'Day'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'End of Day Price'
+                }
+            },
             series: [{
                 name: 'Prices',
                 data: this.props.data
             }]
         });
-*/
+
     }
 
     componentWillReceiveProps(props) {
@@ -45,12 +51,24 @@ class LineChart extends React.Component {
          * required by the type of line chart chosen and set it in the series. Use Date.UTC(..)
          * to create the x-axis.
          */
+
+        var dates = [];
+        for (i = 0; i < Object.keys(props.data).length; i++) {
+            dates.push(Date.UTC(props.data[i].getYear(), props.data[i].getMonth(), props.data[i].getDay()));
+        }
+
+        Highcharts.chart('chart', {
+            xAxis :{
+                tickPositions : dates
+            }
+        });
         
         /**
          * TODO
          * Uncomment the line below to pass the data be displayed to the series
          * this.chart.series[0].setData(data);
          */
+         this.chart.series[0].setData(props.data);
     }
 
     componentWillUnmount() {
@@ -65,4 +83,5 @@ class LineChart extends React.Component {
     }
 }
 
-// Don't forget to export your component!
+export default LineChart;
+

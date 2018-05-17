@@ -71,10 +71,13 @@ class StockTicker extends React.Component {
      * If you are having difficulty with this, you may hard code the options array from the company data provided for the
      * services.
      */
+
+    ;
+
     constructor(props) {
         super(props);
         this.state = {
-            showcompanyinfo: false, //TODO: Use this boolean to determine if the company information should be rendered
+            showcompanyinfo: true, //TODO: Use this boolean to determine if the company information should be rendered
             company : {
                 symbol: '',
                 name: '',
@@ -82,38 +85,58 @@ class StockTicker extends React.Component {
                 state: '',
                 sector: '',
                 industry: ''
-            }
+            },
+            value : ''
             /**
              * TODO
              * Add any additional state to pass via props to the typeahead component.
              */
+            // options : [
+            //     ATVI, ADBE, AKAM, ALXN, GOOG, AMZN, AAL, AMGN, ADI, AAPL,
+            //     AMAT, ADSK, ADP, BIDU, BIIB, BMRN, AVGO, CA, CELG, CERN,
+            //     CHTR, CHKP, CTAS, CSCO, CTXS, CTSH, CMCSA, COST, CSX, CTRP,
+            //     XRAY, DISCA, DISCK, DISH, DLTR,EBAY, EA, EXPE, ESRX, FB,
+            //     FAST, FISV, GILD, HAS, HSIC, HOLX, IDXX, ILMN, INCY
+            // ]
+
+            
+
         };
         this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(event) {
-        if (event.length > 0) {
-            /**
-             * TODO
-             * Make a request to your service to GET company information for the selected company and set it in state.
-             * The information you will need to determine the URL will be contained in the 'event[0]' object,
-             * e.g. event[0] (event[0].symbol if your options are an array of objects) provides you the symbol selected.
-             * The URL will be on your localhost (e.g. http://localhost:8000/service_path/some_param) where
-             * your service is running. Your service MUST be running for the request to work (you can add a catch function
-             * to handle errors). If you successfully retrieve this information, you can set the state objects
-             * and render it.
-             */
-            this.setState({showinfo: true});
+        this.setState({value: event.target.value});
+        console.log(this.state.value);
+        /**
+         * TODO
+         * Make a request to your service to GET company information for the selected company and set it in state.
+         * The information you will need to determine the URL will be contained in the 'event[0]' object,
+         * e.g. event[0] (event[0].symbol if your options are an array of objects) provides you the symbol selected.
+         * The URL will be on your localhost (e.g. http://localhost:8000/service_path/some_param) where
+         * your service is running. Your service MUST be running for the request to work (you can add a catch function
+         * to handle errors). If you successfully retrieve this information, you can set the state objects
+         * and render it.
+         */
+        this.setState({showcompanyinfo: true});
 
-            //this.props.onChange(..);  Call this.props.onChange with the selected symbol to propagate it
-            // to the App component, which will handle it via its own onChane prop,
-            // ultimately  used to fetch the data for the LineChart component.
 
-        }
-        else {
-            this.setState({showinfo: false});
-            this.props.onChange(undefined);
-        }
+        //use get company info using url (case study, services, company)
+        // let info = GET(event[0].symbol |-> url);
+
+        let info = {
+            "symbol":"HSIC",
+            "name":"Henry Schein Inc.",
+            "headquartersCity":"Melville",
+            "headquartersStateOrCountry":"NY",
+            "numberOfEmployees":21000,
+            "sector":"Healthcare",
+            "industry":"Medical Equipment Wholesale"
+        };
+
+        this.setState({company: {symbol: info.symbol, name: info.name, city: info.headquartersCity, state: info.headquartersStateOrCountry, sector: info.sector, industry: info.industry }})
+            
+
     }
 
 
@@ -145,19 +168,21 @@ class StockTicker extends React.Component {
                         */}
                     </div>
                 </div>
-                {
-                    /**
-                     *  TODO
-                     *  Create a div element that shows a company information when the ticker changes. You will need to use a conditional here
-                     *  to help control rendering and pass these states as props to the component. This conditional can
-                     *  be maintained as a state object.
-                     *  http://reactpatterns.com/#conditional-rendering
-                     */
-                }
+                    
+                <input type='text' className='form-control' value={this.state.value} onChange={this.handleChange} />
+                
+                {this.state.showcompanyinfo
+                ?   <center>
+                        <h1>
+                            {this.state.company.name}
+                        </h1>
+                    </center>
+                :   <h1> </h1>
+                } 
             </div>
         );
     }
 
 }
 
-//Don't forget to export your component!
+export default StockTicker;

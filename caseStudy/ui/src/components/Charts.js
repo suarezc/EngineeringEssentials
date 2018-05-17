@@ -26,7 +26,11 @@ class Charts extends React.Component {
              * Initialize a state object to store a JavaScript object returned from the helper method.
              * It can be initialized to be empty.
              */
+
+             
+            data : {}
         };
+        this.dataSourceHelper = this.dataSourceHelper.bind(this);
     }
 
 
@@ -74,6 +78,16 @@ class Charts extends React.Component {
          *
          *  Don't forget to bind the helper method in the constructor!
          * */
+        // url (required), options (optional)
+        let url = 'http://localhost:8000/';
+        fetch(url + , {
+            method: 'get'
+        }).then(function(response) {
+            this.data = response.json();
+        }).catch(function(err) {
+        // Error :(
+        });
+
 }
     
     render() {
@@ -81,7 +95,10 @@ class Charts extends React.Component {
          * TODO
          * Render your LineChart component and pass the data for the chart to display via props
          */
+        return (
+            <LineChart dates=this.state.data />
+        )
     }
 }
 
-// Don't forget to export your component!
+export default Charts;
