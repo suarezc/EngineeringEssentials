@@ -55,7 +55,6 @@ public class CompanyResource {
         return Response.ok().entity(result).build();
     }
 
-
     @GET
     @Path("symbol/{companySymbol}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -68,7 +67,9 @@ public class CompanyResource {
                 result = c;
         if(result == null)
             return Response.ok().entity("No company found").build();
-        return Response.ok().entity(result).header("Access-Control-Allow-Origin", "*").build();
+
+        return Response.ok().entity(result).header("Access-Control-Allow-Origin","*")
+        .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").build();
     }
 
 }

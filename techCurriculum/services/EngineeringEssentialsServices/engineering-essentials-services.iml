@@ -12,6 +12,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="stock-visualization-app" />
+    <orderEntry type="module" module-name="stock-visualization-app" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.5" level="project" />
     <orderEntry type="module" module-name="engineering-essentials" />
     <orderEntry type="library" name="Maven: io.dropwizard:dropwizard-core:1.1.0" level="project" />
