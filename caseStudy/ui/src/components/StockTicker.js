@@ -123,18 +123,26 @@ class StockTicker extends React.Component {
 
         //use get company info using url (case study, services, company)
         // let info = GET(event[0].symbol |-> url);
+        let url = 'http://localhost:8080/company/symbol/' + this.state.value;
+        let info; 
+        // console.log(url);
+        // fetch(url, {mode: 'cors'});
+        fetch(url, {
+            method: 'get',
+            mode: 'no-cors'
+        }).then(function(response) {
+            console.log(response.json());
+            info = response.json();
+            this.setState({company: {symbol: info.symbol, name: info.name, city: info.headquartersCity, state: info.headquartersStateOrCountry, sector: info.sector, industry: info.industry }})
+            console.log(info);
+        }).catch(function(err) {
+            console.log(err);
+        });
 
-        let info = {
-            "symbol":"HSIC",
-            "name":"Henry Schein Inc.",
-            "headquartersCity":"Melville",
-            "headquartersStateOrCountry":"NY",
-            "numberOfEmployees":21000,
-            "sector":"Healthcare",
-            "industry":"Medical Equipment Wholesale"
-        };
+        // console.log(info);
 
-        this.setState({company: {symbol: info.symbol, name: info.name, city: info.headquartersCity, state: info.headquartersStateOrCountry, sector: info.sector, industry: info.industry }})
+
+        // this.setState({company: {symbol: info.symbol, name: info.name, city: info.headquartersCity, state: info.headquartersStateOrCountry, sector: info.sector, industry: info.industry }})
             
 
     }

@@ -79,13 +79,13 @@ class Charts extends React.Component {
          *  Don't forget to bind the helper method in the constructor!
          * */
         // url (required), options (optional)
-        let url = 'http://localhost:8000/';
+        let url = 'http://localhost:8000/stock/';
         fetch(url + , {
             method: 'get'
         }).then(function(response) {
             this.data = response.json();
         }).catch(function(err) {
-        // Error :(
+            console.log(err);
         });
 
 }

@@ -39,18 +39,12 @@ class App extends React.Component{
 
     }
 
-
-
-
-
     render () {
       return (
           <div className="page-display">
               <div className="input">
 
                 <StockTicker />             
-
-
 
                 <div className="date-range">
                   <Date text="Start" />
